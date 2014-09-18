@@ -5,6 +5,7 @@ def getSequence():
 	'''
 		Reads the Nuecliotide sequence from a file 'seq.txt'
 		seq.txt contains human genome sequence from http://www.ncbi.nlm.nih.gov/gene/100189401
+
 	'''
 	content = None
 
