@@ -35,17 +35,17 @@ func compress(seq *string) (*[]byte) {
 			case 84: //ASCI character code for T
 				
 				base <<= 2
-				base |= 1 // One (01) is the hashed value for A 
+				base |= 1 // One (01) is the hashed value for T
 				
 			case 71: //ASCI character code for G
 				
 				base <<= 2
-				base |= 2 // Two (10) is the hashed value for A 
+				base |= 2 // Two (10) is the hashed value for G
 				
 			case 67: //ASCI character code for C
 				
 				base <<= 2
-				base |= 3 // Three (11) is the hashed value for A 
+				base |= 3 // Three (11) is the hashed value for C
 				
 		}
 		
@@ -63,11 +63,8 @@ func compress(seq *string) (*[]byte) {
 }
 
 func simple() {
-	codons := "ATGC"+"TGAC"+"ATGC"+"TGAC"+"ATGC"+"TGAC"+"ATGC"+"TGAC"+"ATGC"+"TGAC"+"ATGC"+"TGAC"+"ATGC"+"TGAC"+"ATGC"+"TGAC"
-	codons += "ATGC"+"TGAC"+"ATGC"+"TGAC"
-	codons += "ATGC"+"TGAC"+"ATGC"+"TGAC"
-	codons += "ATGC"+"TGAC"+"ATGC"+"TGAC"
-	codons += "ATGC"+"TGAC"+"ATGC"+"TGAC"
+	codons := "ATGC"+"TGAC"+"ATGC"+"TGAC"+"ATGC"+"TGAC"
+	
 	// master := make([]byte, len(codons)/4)
 
 	// printBits(base)
