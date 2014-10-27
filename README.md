@@ -40,3 +40,62 @@ Genome - is a sequence of nucleotides - A T G C.
 Spiral Sieves - are mathematical systems that give out numbers of a specific pattern.
 
 Genomic Spiral Seive is a system which provides a compressed analysis mechanism for quick operations on a large DNA sequences using information compression techniques.
+
+The ASCII character code for ATGC are
+
+> A 1000001
+
+> T 1010100
+
+> G 1000111
+
+> C 1000011
+
+
+# Compression Algorithm
+
+A simple hash compression :
+
+> A 1000001 after compression 00
+
+> T 1010100 after compression 01 
+
+> G 1000111 after compression 10
+
+> C 1000011 after compression 11
+
+
+So a simple ATGC sequence becomes
+
+> ATGC after compression looks like **00011011**
+> To decompress - **00** **01** **10** **11** = A T G C 
+
+# What's the value?
+
+## Lesser Space
+
+Instead of using 16 bits to represent a nucleotide GSS uses just 2 bits.
+
+That's 14 bits saved for a single character. One typical DNA might have close to 6 billion of them.
+
+Now imagine the space saved for a whole DNA database!
+
+## Lesser Time
+
+A CPU typically compares two given character A & A by comparing all the 8 bits used in ASCII character code. 
+
+After GSS compression to compare two characters, CPU takes just 2 bits to compare. 
+
+Hence GSS saves atleast 6 CPU instructions per nucleotide comparision.
+
+I would leave the reader to compute the total instructions which could be saved if GSS based platform is used for DNA searches.
+
+# Tip of the ice-berg
+
+GSS compression algorithm is just the base. There is a long way to go.
+
+Saving 6 bits is good. Saving 6 instructions is good. This is just the tip of the ice-berg.
+
+Could we create a Unix **"grep"** like super fast string search algorithms leveraging the high-concurrency abilities of languages like golang? 
+
+Would be be able to check a given DNA and check for all disease causing gnome sequences in seconds? That's GSS ultimate goal!
