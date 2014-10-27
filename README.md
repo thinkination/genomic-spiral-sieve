@@ -44,18 +44,26 @@ Genomic Spiral Seive is a system which provides a compressed analysis mechanism 
 The ASCII character code for ATGC are
 
 > A 1000001
+
 > T 1010100
+
 > G 1000111
+
 > C 1000011
+
 
 # Compression Algorithm
 
 A simple hash compression :
 
 > A 1000001 after compression 00
+
 > T 1010100 after compression 01 
+
 > G 1000111 after compression 10
+
 > C 1000011 after compression 11
+
 
 So a simple ATGC sequence becomes
 
