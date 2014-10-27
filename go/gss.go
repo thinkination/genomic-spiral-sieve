@@ -113,26 +113,7 @@ func main() {
 
 		for _,masterByte := range master{			
 			printBits(masterByte);
-		}
-
-		// bytes := ([]byte)(line)
-
-		// for k := 0; k <len(bytes) ; k++ {
-		// 		// fmt.Printf("%.4b ",bytes[k])
-		// 		switch(bytes[k]){
-		// 			case 65: 
-		// 				fmt.Printf("%.2b",0)
-		// 			case 84:
-		// 				fmt.Printf("%.2b",1)
-		// 			case 71:
-		// 				fmt.Printf("%.2b",2)
-		// 			case 67:
-		// 				fmt.Printf("%.2b",3)
-		// 		}
-		// 		fmt.Println()
-		// 		// fmt.Println((string)(line[k]))
-		// }
-		// fmt.Println(i, line)
+		}		
 	}
 
 	if err := writeLines(lines, "foo.out.txt"); err != nil {
