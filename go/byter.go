@@ -27,33 +27,28 @@ func compress(seq *string) (*[]byte) {
 	for i:=0 ; i<len(codons) ; i++ {
 		code := codons[i]
 		switch(code){
-			case 65: 
-				// fmt.Printf("%.2b",0)
+			case 65: //ASCI character code for A
+				
 				base <<= 2
-				base |= 0
-				// bits = byte(0)
-			case 84:
-				// fmt.Printf("%.2b",1)
+				base |= 0 // Zero (00) is the hashed value for A 
+				
+			case 84: //ASCI character code for T
+				
 				base <<= 2
-				base |= 1
-				// bits = byte(1)
-			case 71:
-				// fmt.Printf("%.2b",2)
+				base |= 1 // One (01) is the hashed value for A 
+				
+			case 71: //ASCI character code for G
+				
 				base <<= 2
-				base |= 2
-				// bits = byte(2)
-			case 67:
-				// fmt.Printf("%.2b",3)
+				base |= 2 // Two (10) is the hashed value for A 
+				
+			case 67: //ASCI character code for C
+				
 				base <<= 2
-				base |= 3
-				// bits = byte(3)
+				base |= 3 // Three (11) is the hashed value for A 
+				
 		}
 		
-		// AppendSymbol(&base,&bits)
-
-		
-		// fmt.Printf("%.8b",base)
-		// fmt.Println()
 
 		bitCounter+=2
 		if(bitCounter>=8){
