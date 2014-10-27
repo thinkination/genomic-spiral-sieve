@@ -42,10 +42,71 @@ func writeLines(lines []string, path string) error {
 	return w.Flush()
 }
 
-// A 1000001
-// T 1010100
-// G 1000111
-// C 1000011
+// A 1000001 after compression 00
+// T 1010100 after compression 01 
+// G 1000111 after compression 10
+// C 1000011 after compression 11
+
+//ATGC after compression looks like 00011011
+//To decompress - 00 01 10 11 = A T G C 
+
+
+func compress(seq *string) (*[]byte) {
+	var master []byte
+	codons := *seq
+
+	var base byte = byte(0)
+	// var bits byte
+	var bitCounter uint8 = uint8(0);
+	for i:=0 ; i<len(codons) ; i++ {
+		code := codons[i]
+		switch(code){
+			case 65: 
+				// fmt.Printf("%.2b",0)
+				base <<= 2
+				base |= 0
+				// bits = byte(0)
+			case 84:
+				// fmt.Printf("%.2b",1)
+				base <<= 2
+				base |= 1
+				// bits = byte(1)
+			case 71:
+				// fmt.Printf("%.2b",2)
+				base <<= 2
+				base |= 2
+				// bits = byte(2)
+			case 67:
+				// fmt.Printf("%.2b",3)
+				base <<= 2
+				base |= 3
+				// bits = byte(3)
+		}
+		
+		// AppendSymbol(&base,&bits)
+
+		
+		// fmt.Printf("%.8b",base)
+		// fmt.Println()
+
+		bitCounter+=2
+		if(bitCounter>=8){
+			master=append(master,base)
+			bitCounter = uint8(0)
+			base = byte(0)
+		}
+		
+	}
+
+	return &master
+}
+
+func printBits(b byte) {
+	
+	fmt.Printf("%.8b",b)
+	fmt.Println()
+}
+
 
 func main() {
 	lines, err := readLines("../seq.txt")
@@ -53,23 +114,30 @@ func main() {
 		log.Fatalf("readLines: %s", err)
 	}
 	for _, line := range lines {
-		bytes := ([]byte)(line)
+		var master []byte
+		master = *(compress(&line))
 
-		for k := 0; k <len(bytes) ; k++ {
-				// fmt.Printf("%.4b ",bytes[k])
-				switch(bytes[k]){
-					case 65: 
-						fmt.Printf("%.2b",0)
-					case 84:
-						fmt.Printf("%.2b",1)
-					case 71:
-						fmt.Printf("%.2b",2)
-					case 67:
-						fmt.Printf("%.2b",3)
-				}
-				fmt.Println()
-				// fmt.Println((string)(line[k]))
+		for _,masterByte := range master{			
+			printBits(masterByte);
 		}
+
+		// bytes := ([]byte)(line)
+
+		// for k := 0; k <len(bytes) ; k++ {
+		// 		// fmt.Printf("%.4b ",bytes[k])
+		// 		switch(bytes[k]){
+		// 			case 65: 
+		// 				fmt.Printf("%.2b",0)
+		// 			case 84:
+		// 				fmt.Printf("%.2b",1)
+		// 			case 71:
+		// 				fmt.Printf("%.2b",2)
+		// 			case 67:
+		// 				fmt.Printf("%.2b",3)
+		// 		}
+		// 		fmt.Println()
+		// 		// fmt.Println((string)(line[k]))
+		// }
 		// fmt.Println(i, line)
 	}
 
