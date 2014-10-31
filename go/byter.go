@@ -14,7 +14,7 @@ func AppendSymbol(b *byte, value *byte) {
 func printBits(b byte) {
 	
 	fmt.Printf("%.8b",b)
-	fmt.Println()
+	// fmt.Println()
 }
 
 func compress(seq *string) (*[]byte) {
@@ -60,6 +60,24 @@ func compress(seq *string) (*[]byte) {
 	}
 
 	return &master
+}
+
+func base() {
+	quads := "ATGC"+"ATCG"+"AGTC"+"AGCT"+"ACTG"+"ACGT"+"TAGC"+"TACG"+"TGAC"+"TGCA"+"TCAG"+"TCGA"+"GATC"+"GACT"+"GTAC"+"GTCA"+"GCAT"+"GCTA"+"CATG"+"CAGT"+"CTAG"+"CTGA"+"CGAT"+"CGTA"
+	values := [...]string{"ATGC","ATCG","AGTC","AGCT","ACTG","ACGT","TAGC","TACG","TGAC","TGCA","TCAG","TCGA","GATC","GACT","GTAC","GTCA","GCAT","GCTA","CATG","CAGT","CTAG","CTGA","CGAT","CGTA"}
+	
+	fmt.Println()
+	
+	master := *(compress(&quads))
+	for i,masterByte := range master{	
+		// fmt.Print("bitMap[byte(")	
+		fmt.Print(masterByte)	
+		// fmt.Print(")]=")	
+		fmt.Print(" ")
+		fmt.Print(values[i])
+		fmt.Println()
+
+	}
 }
 
 func simple() {
@@ -128,7 +146,8 @@ func basics() {
 }
 
 func main() {
-	simple()
+	base()
+	// simple()
 	// k := byte(17)
 	// x := k >> 2
 	// fmt.Printf("%.4b",x)
