@@ -1,4 +1,4 @@
-import itertools
+import itertools github
 
 #Reads the sequences
 def getSequence():
